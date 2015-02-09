@@ -13,7 +13,7 @@ public:
   char getsuit();
   int getvalue();
   /* ToString */
-  char* toString();
+  std::string toString();
 
 };
 

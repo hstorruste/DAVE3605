@@ -1,5 +1,5 @@
 #include "Kort.hpp"
-
+#include <string>
 #include <iostream>
 
 using namespace std;
@@ -18,11 +18,7 @@ int Kort::getvalue(){
   return value_;
 }
 
-
-//får ikke til denne!!!
-char* Kort::toString(){
-  char* s{&suit_};
-  s[1]=value_;
-  // s += value_;
+string Kort::toString(){
+  string s{suit_+to_string(value_)};
   return s;
 }
