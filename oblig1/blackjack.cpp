@@ -240,10 +240,14 @@ int main(){
   /*Ordner gevinst og tap*/
   i=0;
   for(vector<Spiller>::iterator it=spiller.begin();it != spiller.end(); ++it){
-    cout << it->getnavn();
+    cout << it->getnavn() << " ";
+    if(poengsum[i] == BLACKJACK && it->gethand()->size() == 2)
+      bj[i] = true;
+    else
+      bj[i] = false;
     bool gevinst = false;
     if(bj[i]){
-      it->updateSaldo(belop[i]*3/2);  //Gevinst
+      it->updateSaldo(belop[i]*3/2);  //Gevinst BLACKJACK
       gevinst = true;
     }
     else if( busted[i] ){
@@ -266,7 +270,13 @@ int main(){
       }
     }
     i++;
-
+    if(gevinst)
+      cout << "WON!" << endl;
+    else
+      cout << "LOST!" << endl;
+    cout << "New balance: " << it->getsaldo() << endl;
     
-  } 
+  }
+  cout << "Play again? (y/n)\n";
+
 }
