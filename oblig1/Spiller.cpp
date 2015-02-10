@@ -27,6 +27,6 @@ void Spiller::hit(Kort* kort){
 }
 
 int Spiller::updateSaldo(int belop){
-  saldo += belop;
+  saldo += (int)belop;
   return saldo;
 }

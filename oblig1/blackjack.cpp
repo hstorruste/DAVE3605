@@ -202,7 +202,7 @@ int main(){
     cout << poengsum[i] << endl;
     if(poengsum[i] > BLACKJACK){
       busted[i] = true;
-      cout << "BUSTED!" << endl;
+      cout << "BUST!" << endl;
     }
     else busted[i] = false;
     // for(Kort* k : *hand)
@@ -216,22 +216,57 @@ int main(){
     if(!bust)
       dealdraw = true;
   /*Dealer draws*/
+  int sumDealer{0};
+  bool dealbust = false;
   bool dealbj = false;
   if(dealdraw){
     while(dealerhit(&dealer))
       dealer.push_back(*stokk.del());
 
-    int sumDealer{0};
+
     sumDealer = score( &dealer );
     cout << "Dealer: " << sumDealer;
     if(sumDealer == BLACKJACK && dealer.size() == 2){
       cout << " BLACKJACK!";
       dealbj = true;
     }
-    if(sumDealer > BLACKJACK)
+    if(sumDealer > BLACKJACK){
+      dealbust = true;
       cout << " BUST!";
+    }
     cout << endl;
   }
 
   /*Ordner gevinst og tap*/
+  i=0;
+  for(vector<Spiller>::iterator it=spiller.begin();it != spiller.end(); ++it){
+    cout << it->getnavn();
+    bool gevinst = false;
+    if(bj[i]){
+      it->updateSaldo(belop[i]*3/2);  //Gevinst
+      gevinst = true;
+    }
+    else if( busted[i] ){
+      it->updateSaldo(-belop[i]);      //Tap
+    }
+    else{
+      if(dealbj)
+	it->updateSaldo(-belop[i]);      //Tap
+      else if(dealbust){
+	it->updateSaldo(belop[i]);      //Gevinst
+	gevinst = true;
+      }
+      else{
+	if(sumDealer > poengsum[i])  //Tap
+	  it->updateSaldo(-belop[i]);      
+	else{                        //Gevinst
+	  it->updateSaldo(belop[i]);      
+	  gevinst = true;
+	}
+      }
+    }
+    i++;
+
+    
+  } 
 }
