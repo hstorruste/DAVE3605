@@ -1,5 +1,6 @@
 #include "Kortstokk.hpp"
 #include "Kort.hpp"
+#include "Spiller.hpp"
 #include <iostream>
 #include <vector>
 #include <sstream>
@@ -22,7 +23,7 @@ int score( vector<Kort>* hand_){
     else if(temp > 10)  //Setter verdi til 10 om det er bildekort
       temp = 10;
     sum += temp;
-    cout << k.toString() << endl;
+    //cout << k.toString() << endl;
   }
   while(sum > BLACKJACK && aces > 0){ /*Setter ess til å være 1 
 					om summen er over 21*/
@@ -30,8 +31,7 @@ int score( vector<Kort>* hand_){
     aces--;
   }
   return sum;
-
-}
+} // end of function
 
 //Returnerer true hvis hand er under 17, false hvis 17 eller mer.
 bool dealerhit( vector<Kort>* hand_){
@@ -42,7 +42,7 @@ bool dealerhit( vector<Kort>* hand_){
     hit = true;
   }
   return hit;
-} 
+} // end of function
 
 int main(){
 
@@ -79,13 +79,66 @@ int main(){
 
   /*Tar imot input fra bruker om navn på spillere*/
   string navn[antSpillere];
-  input = "";
+  //input = "";
 
   for(int i{0}; i < antSpillere; i++){
     cout << "Player" << i+1 << " name: \n";
     getline(cin, navn[i]);
     cout << "Player" << i+1 << " is named: " << navn[i] << endl << endl;
   }
+
+  /*Tar imot input fra bruker om saldo for spillere*/
+  int saldo[antSpillere];
+  input = "";
+
+  for(int i{0}; i < antSpillere; i++){
+    while(true){
+      cout << navn[i] <<", how much cash do you have? (10 - 100000)\n";
+      getline(cin, input);
+    
+      //Konverterer fra string til int
+      stringstream myStream(input);
+      if(myStream >> saldo[i])
+	if(saldo[i] > 9 && saldo[i] <= 100000) //Saldo må være 10-100000
+	  break;
+    
+      cout << "Invalid number, please try again" << endl;
+    }
+    cout << navn[i] << " has " << saldo[i] << ",-" << endl;
+    
+  }
+
+  /* Oppretter spillere */
+  vector<Spiller> spiller{};
+  for(int i{0}; i < antSpillere; i++){
+    Spiller s{navn[i],saldo[i]};
+    spiller.push_back(s);
+  }
+  
+  /* Satse penger */
+  int belop[antSpillere];
+  input = "";
+  int i{0};
+  for(vector<Spiller>::iterator it=spiller.begin();it != spiller.end(); ++it){
+    Spiller s = *it;
+    while(true){
+      cout << s.getnavn() << ", how much do you want to bet? (1 - "
+	   << s.getsaldo() << ")\n";
+      getline(cin, input);
+    
+      //Konverterer fra string til int
+      stringstream myStream(input);
+      if(myStream >> belop[i])
+	if(belop[i] > 0 && belop[i] <= s.getsaldo()) //Beløp må være gyldig
+	  break;
+    
+	  cout << "Invalid number, please try again" << endl;
+    }
+    cout << s.getnavn() << " is betting " << belop[i] << ",-" << endl;
+    i++;
+  }
+  
+  /*Deler kort*/
 
 
   //Dealer

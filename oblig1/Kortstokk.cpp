@@ -16,30 +16,13 @@ Kortstokk::Kortstokk() :
   stokken{}, kastet{}
 {
   /*Konstruerer en kortstokk med 52 kort*/
-  /*13 spar(spades)*/
-  for(int i{0}; i < 13; i++){
-    Kort k{suits[0], i+1};
-    stokken.push_back(k);
-  }
-
-  /*13 hjerter(harts)*/
-  for(int i{0}; i < 13; i++){
-    Kort k{suits[1], i+1};
-    stokken.push_back(k);
-  }
-
-  /*13 ruter(diamonds)*/
-  for(int i{0}; i < 13; i++){
-    Kort k{suits[2], i+1};
-    stokken.push_back(k);
-  }
-
-  /*13 kløver(clubs)*/
-  for(int i{0}; i < 13; i++){
-    Kort k{suits[3], i+1};
-    stokken.push_back(k);
-  } 
+  for(int j{0}; j < sizeof(suits); j++) 
+    for(int i{0}; i < 13; i++){
+      Kort k{suits[j], i+1};
+      stokken.push_back(k);
+    }
 }
+
 bool Kortstokk::empty(){
   return stokken.empty();
 }
