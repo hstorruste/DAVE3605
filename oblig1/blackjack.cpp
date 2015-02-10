@@ -44,22 +44,8 @@ bool dealerhit( vector<Kort>* hand_){
   return hit;
 } // end of function
 
-int main(){
+void opprettSpillere(vector<Spiller> *spiller_){
 
-  Kortstokk stokk{};
-  //Må try-catch på del() funksjonen. Catche out-of-range hvis stokken er tom.
-
-  /*Tester at alle kort er i stokken*/
-  /*int antall{0};
-  stokk.stokk();
-  while(!stokk.empty()){
-    Kort k = stokk.del();
-    antall++;
-    cout << "Delte: " << k.toString() << endl;
-  }
-  cout << "Delte første gang totalt: " << antall << " kort" <<endl;*/
-  
-  stokk.stokk();
   /*Tar imot input fra bruker om antall spillere*/
   string input = "";
   int antSpillere{0};
@@ -109,15 +95,38 @@ int main(){
   }
 
   /* Oppretter spillere */
-  vector<Spiller> spiller{};
   for(int i{0}; i < antSpillere; i++){
     Spiller s{navn[i],saldo[i]};
-    spiller.push_back(s);
+    spiller_->push_back(s);
   }
+
+
+} // end of opprettSpillere
+
+int main(){
+
+  Kortstokk stokk{};
+  //Må try-catch på del() funksjonen. Catche out-of-range hvis stokken er tom.
+
+  /*Tester at alle kort er i stokken*/
+  /*int antall{0};
+  stokk.stokk();
+  while(!stokk.empty()){
+    Kort k = stokk.del();
+    antall++;
+    cout << "Delte: " << k.toString() << endl;
+  }
+  cout << "Delte første gang totalt: " << antall << " kort" <<endl;*/
   
+  stokk.stokk();
+  
+  /* Oppretter spillere */
+  vector<Spiller> spiller{};
+  opprettSpillere( &spiller );
+
   /* Satse penger */
-  int belop[antSpillere];
-  input = "";
+  int belop[spiller.size()];
+  string input = "";
   int i{0};
   for(vector<Spiller>::iterator it=spiller.begin();it != spiller.end(); ++it){
     Spiller s = *it;
