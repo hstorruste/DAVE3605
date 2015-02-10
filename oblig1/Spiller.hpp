@@ -8,7 +8,7 @@
 class Spiller{
   std::string navn;
   int saldo;
-  std::vector<Kort> hand;
+  std::vector<Kort*> hand;
 
 public:
   /** Constructor */
@@ -18,7 +18,7 @@ public:
 
   int getsaldo();
 
-  std::vector<Kort> gethand();
+  std::vector<Kort*>* gethand();
   
   void hit(Kort*);
 

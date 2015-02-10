@@ -17,7 +17,7 @@ public:
 
   void stokk();
   
-  Kort del();
+  Kort* del();
 
 };
 

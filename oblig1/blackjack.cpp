@@ -65,7 +65,6 @@ void opprettSpillere(vector<Spiller> *spiller_){
 
   /*Tar imot input fra bruker om navn på spillere*/
   string navn[antSpillere];
-  //input = "";
 
   for(int i{0}; i < antSpillere; i++){
     cout << "Player" << i+1 << " name: \n";
@@ -99,7 +98,6 @@ void opprettSpillere(vector<Spiller> *spiller_){
     Spiller s{navn[i],saldo[i]};
     spiller_->push_back(s);
   }
-
 
 } // end of opprettSpillere
 
@@ -148,19 +146,64 @@ int main(){
   }
   
   /*Deler kort*/
-
-
-  //Dealer
-  int sumDealer{0};
+  for(vector<Spiller>::iterator it=spiller.begin();it != spiller.end(); ++it){
+    it->hit(stokk.del());
+    it->hit(stokk.del());
+  }
   
+   //Dealer
   vector<Kort> dealer{};
+  dealer.push_back(*stokk.del());
+  dealer.push_back(*stokk.del());
 
-  dealer.push_back(stokk.del());
-  dealer.push_back(stokk.del());
+  
+  /*Spillet begynner*/
+ 
+  for(vector<Spiller>::iterator it=spiller.begin();it != spiller.end(); ++it){
+    cout << "Dealer has: " << dealer.begin()->toString() << endl;
+    
+    /* Leser input HIT or STAY */
+    string input = "";
+    cout << it->getnavn() << " has: ";
+    vector<Kort*>* hand = it->gethand();
+    for(Kort* k : *hand)
+      cout << k->toString();
+    cout << endl;
+    while(true){
+      
+      cout << it->getnavn() <<"Do you HIT(h) or STAY(s)?\n";
+      getline(cin, input);
+    
+      //Leser inn første char og sammenligner
+      stringstream myStream(input);
+      char c{'a'};
+      myStream.get(c);
+      if(c == 'h'){  // Tar et kort til
+	it->hit(stokk.del());
+	cout << it->getnavn() << " has: ";
+	for(Kort* k : *hand)
+	  cout << k->toString();
+	cout << endl;
+      }
+      else if(c == 's'){
+	break;
+      }
+      else{
+	cout << "Invalid input, please try again" << endl;
+      }
+    }
+    cout << it->getnavn() << " has: ";
+    for(Kort* k : *hand)
+      cout << k->toString();
+    cout << endl;
+    
+  }
 
+  /*Dealer draws*/
   while(dealerhit(&dealer))
-    dealer.push_back(stokk.del());
+    dealer.push_back(*stokk.del());
 
+  int sumDealer{0};
   sumDealer = score( &dealer );
   cout << "Dealer: " << sumDealer;
   if(sumDealer == BLACKJACK && dealer.size() == 2)

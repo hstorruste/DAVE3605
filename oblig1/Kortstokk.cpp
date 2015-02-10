@@ -41,13 +41,13 @@ void Kortstokk::stokk(){
   shuffle(stokken.begin(),stokken.end(),generator);
 }
 
-Kort Kortstokk::del(){
+Kort* Kortstokk::del(){
   /*Skulle ha en sikkerhet at stokken ikke er tom. nullptr virker ikke.
     Kan ikke dereference nullpointer*/
   
   
-  Kort ut = stokken.at(stokken.size()-1);
-  kastet.push_back(ut);
+  Kort* ut = &stokken.at(stokken.size()-1);
+  kastet.push_back(*ut);
   stokken.pop_back();
   return ut;
 }

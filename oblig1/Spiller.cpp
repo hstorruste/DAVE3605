@@ -18,12 +18,12 @@ int Spiller::getsaldo(){
   return saldo;
 }
 
-vector<Kort> Spiller::gethand(){
-  return hand;
+vector<Kort*>* Spiller::gethand(){
+  return &hand;
 }
 
 void Spiller::hit(Kort* kort){
-  hand.push_back(*kort);
+  hand.push_back(kort);
 }
 
 int Spiller::updateSaldo(int belop){
