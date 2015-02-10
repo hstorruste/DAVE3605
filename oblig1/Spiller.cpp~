@@ -1,0 +1,19 @@
+#include "Spiller.hpp"
+#include "Kort.hpp"
+#include <vector>
+
+using namespace std;
+
+Spiller::Spiller(string navn_, int saldo_) :
+  navn{navn_}, saldo{saldo_}, hand{}
+{
+  cout << "Constructing player " << navn_ << endl;
+}
+
+vector<Kort> Spiller::gethand(){
+  return hand;
+}
+
+void Spiller::hit(Kort*){
+  hand.push_back(&Kort);
+}
