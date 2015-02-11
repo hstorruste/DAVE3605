@@ -7,7 +7,7 @@ using namespace std;
 Kort::Kort(char suit, int value) : 
   suit_{suit}, value_{value}
 {
-  cout << "Constructing card " << suit << value << endl;
+  //cout << "Constructing card " << suit << value << endl;
 }
 
 char Kort::getsuit(){
