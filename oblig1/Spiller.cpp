@@ -30,3 +30,7 @@ int Spiller::updateSaldo(int belop){
   saldo += (int)belop;
   return saldo;
 }
+
+void Spiller::throwhand(){
+  hand.erase(hand.begin(),hand.end());
+}

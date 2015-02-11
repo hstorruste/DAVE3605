@@ -104,25 +104,15 @@ void opprettSpillere(vector<Spiller> *spiller_){
 int main(){
 
   Kortstokk stokk{};
-  //Må try-catch på del() funksjonen. Catche out-of-range hvis stokken er tom.
-
-  /*Tester at alle kort er i stokken*/
-  /*int antall{0};
-  stokk.stokk();
-  while(!stokk.empty()){
-    Kort k = stokk.del();
-    antall++;
-    cout << "Delte: " << k.toString() << endl;
-  }
-  cout << "Delte første gang totalt: " << antall << " kort" <<endl;*/
-  
-  stokk.stokk();
   
   /* Oppretter spillere */
   vector<Spiller> spiller{};
   opprettSpillere( &spiller );
 
-  /* Satse penger */
+  /*The game is on! Returnerer hit for ny runde*/
+  while(true){  
+    stokk.stokk();
+    /* Satse penger */
   int belop[spiller.size()];
   string input = "";
   int i{0};
@@ -156,7 +146,6 @@ int main(){
   dealer.push_back(*stokk.del());
   dealer.push_back(*stokk.del());
 
-  
   /*Spillet begynner*/
   int poengsum[spiller.size()];
   bool busted[spiller.size()];
@@ -200,20 +189,18 @@ int main(){
     poengsum[i] = score(&temphand);
     cout << it->getnavn() << " has: ";
     cout << poengsum[i] << endl;
-    if(poengsum[i] > BLACKJACK){
+    if(poengsum[i] > 21){
       busted[i] = true;
       cout << "BUST!" << endl;
     }
     else busted[i] = false;
-    // for(Kort* k : *hand)
-    //   cout << k->toString();
     cout << endl;
     i++;
   }
 
   bool dealdraw = false; //Sjekk om dealer trenger å spille
-  for(bool bust : busted)
-    if(!bust)
+  for(int i{0}; i < sizeof(busted); i++)
+    if(!busted[i])
       dealdraw = true;
   /*Dealer draws*/
   int sumDealer{0};
@@ -275,8 +262,27 @@ int main(){
     else
       cout << "LOST!" << endl;
     cout << "New balance: " << it->getsaldo() << endl;
-    
+    it->throwhand();
   }
-  cout << "Play again? (y/n)\n";
+  
 
+  while(true){
+    cout << "Play again? (y/n)\n";
+      getline(cin, input);
+    
+      //Leser inn første char og sammenligner
+      stringstream myStream(input);
+      char c{'a'};
+      myStream.get(c);
+      if(c == 'y'){  // En runde til
+	break;
+      }
+      else if(c == 'n'){
+	return 0;
+      }
+      else{
+	cout << "Invalid input, please try again" << endl;
+      }
+    }
+  }//End of while: The game is on!
 }

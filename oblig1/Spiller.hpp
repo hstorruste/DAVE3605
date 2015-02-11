@@ -23,6 +23,8 @@ public:
   void hit(Kort*);
 
   int updateSaldo(int);
+
+  void throwhand();
 };
 
 #endif
