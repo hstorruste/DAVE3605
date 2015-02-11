@@ -23,7 +23,6 @@ int score( vector<Kort>* hand_){
     else if(temp > 10)  //Setter verdi til 10 om det er bildekort
       temp = 10;
     sum += temp;
-    //cout << k.toString() << endl;
   }
   while(sum > BLACKJACK && aces > 0){ /*Setter ess til å være 1 
 					om summen er over 21*/
@@ -118,7 +117,7 @@ int main(){
   int i{0};
   for(vector<Spiller>::iterator it=spiller.begin();it != spiller.end(); ++it){
     Spiller s = *it;
-    while(true){
+    while(s.getsaldo() != 0){
       cout << s.getnavn() << ", how much do you want to bet? (1 - "
 	   << s.getsaldo() << ")\n";
       getline(cin, input);
@@ -131,7 +130,11 @@ int main(){
     
 	  cout << "Invalid number, please try again" << endl;
     }
-    cout << s.getnavn() << " is betting " << belop[i] << ",-" << endl;
+    if(s.getsaldo() == 0){
+      cout << s.getnavn() << " is out of money!\nExiting..." <<  endl;
+      return 0;
+    }else
+      cout << s.getnavn() << " is betting " << belop[i] << ",-" << endl;
     i++;
   }
   
@@ -147,9 +150,10 @@ int main(){
   dealer.push_back(*stokk.del());
 
   /*Spillet begynner*/
-  int poengsum[spiller.size()];
-  bool busted[spiller.size()];
-  bool bj[spiller.size()];
+  int antSpillere = spiller.size();
+  int poengsum[antSpillere];
+ 
+  bool dealdraw = false; //Sjekk om dealer trenger å spille
   for(vector<Spiller>::iterator it=spiller.begin();it != spiller.end(); ++it){
     cout << "Dealer has: " << dealer.begin()->toString() << endl;
     
@@ -162,7 +166,7 @@ int main(){
     cout << endl;
     while(true){
       
-      cout << it->getnavn() <<"Do you HIT(h) or STAY(s)?\n";
+      cout <<"Do you HIT(h) or STAY(s)? ";
       getline(cin, input);
     
       //Leser inn første char og sammenligner
@@ -189,19 +193,17 @@ int main(){
     poengsum[i] = score(&temphand);
     cout << it->getnavn() << " has: ";
     cout << poengsum[i] << endl;
-    if(poengsum[i] > 21){
-      busted[i] = true;
+    if(poengsum[i] == BLACKJACK && temphand.size() == 2){
+       cout << "BLACKJACK!" << endl;
+    }else if(poengsum[i] > BLACKJACK){
       cout << "BUST!" << endl;
     }
-    else busted[i] = false;
+    else
+      dealdraw = true; //Dealer må spille
     cout << endl;
     i++;
   }
-
-  bool dealdraw = false; //Sjekk om dealer trenger å spille
-  for(int i{0}; i < sizeof(busted); i++)
-    if(!busted[i])
-      dealdraw = true;
+  
   /*Dealer draws*/
   int sumDealer{0};
   bool dealbust = false;
@@ -209,7 +211,6 @@ int main(){
   if(dealdraw){
     while(dealerhit(&dealer))
       dealer.push_back(*stokk.del());
-
 
     sumDealer = score( &dealer );
     cout << "Dealer: " << sumDealer;
@@ -228,36 +229,35 @@ int main(){
   i=0;
   for(vector<Spiller>::iterator it=spiller.begin();it != spiller.end(); ++it){
     cout << it->getnavn() << " ";
-    if(poengsum[i] == BLACKJACK && it->gethand()->size() == 2)
-      bj[i] = true;
-    else
-      bj[i] = false;
+    vector<Kort> temphand{};
+    for(Kort* k : *it->gethand())
+      temphand.push_back(*k);
+    poengsum[i] = score(&temphand); // spiller sin poengsum
+    bool push = false;
     bool gevinst = false;
-    if(bj[i]){
-      it->updateSaldo(belop[i]*3/2);  //Gevinst BLACKJACK
+    if(poengsum[i] == BLACKJACK && it->gethand()->size() == 2){
+      it->updateSaldo((belop[i]*3)/2);  //Gevinst BLACKJACK
       gevinst = true;
     }
-    else if( busted[i] ){
-      it->updateSaldo(-belop[i]);      //Tap
+    else if( poengsum[i] > BLACKJACK ){
+      it->updateSaldo(-belop[i]);      //Tap (bust)
     }
-    else{
-      if(dealbj)
-	it->updateSaldo(-belop[i]);      //Tap
-      else if(dealbust){
-	it->updateSaldo(belop[i]);      //Gevinst
+    else if(dealbj)
+	it->updateSaldo(-belop[i]);      //Tap (dealer blackjack)
+    else if(dealbust){
+	it->updateSaldo(belop[i]);      //Gevinst (dealer bust)
 	gevinst = true;
-      }
-      else{
-	if(sumDealer > poengsum[i])  //Tap
-	  it->updateSaldo(-belop[i]);      
-	else{                        //Gevinst
-	  it->updateSaldo(belop[i]);      
-	  gevinst = true;
-	}
-      }
     }
+    else if(sumDealer > poengsum[i])  //Tap (dealer mer en spiller)
+      it->updateSaldo(-belop[i]);      
+    else if(sumDealer < poengsum[i]){    //Gevinst (spiller mer en dealer)
+      it->updateSaldo(belop[i]);      
+	  gevinst = true;      
+    } else push = true;
     i++;
-    if(gevinst)
+    if(push)
+      cout << "PUSH!" << endl;
+    else if(gevinst)
       cout << "WON!" << endl;
     else
       cout << "LOST!" << endl;

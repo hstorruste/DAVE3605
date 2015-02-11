@@ -8,7 +8,7 @@
 
 using namespace std;
 
-static int nr{0};
+//static int nr{0};
 
 static char suits[4]{'s','h','d','c'};
 
@@ -44,7 +44,6 @@ void Kortstokk::stokk(){
 Kort* Kortstokk::del(){
   /*Skulle ha en sikkerhet at stokken ikke er tom. nullptr virker ikke.
     Kan ikke dereference nullpointer*/
-  
   
   Kort* ut = &stokken.at(stokken.size()-1);
   kastet.push_back(*ut);
