@@ -28,7 +28,7 @@ Spillet er implementert med enkle spilleregler. Man blir bedt om å velge fra 1-
 	|--------------------|		|----------------------|		|---------------------------|
 	|getsuit() : char    |		|empty() : bool	       |		|getnavn() : string	    |
 	|getvalue() : int    |		|stokk() : void	       |		|getsaldo() : int	    |
-	|toString() : string |		|del() : Kort*	       |		|gethand() : vector<Kort*>* |
+	|toString() : string |		|del() : Kort&#8727	       |		|gethand() : vector<Kort&#8727>* |
 	+--------------------+		+----------------------+		|hit(Kort*) : void	    |
 										|updateSaldo(int) : int     |
 										|throwhand() : void	    |
