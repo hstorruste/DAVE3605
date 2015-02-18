@@ -14,10 +14,26 @@ Spillet er implementert med enkle spilleregler. Man blir bedt om å velge fra 1-
 
 
 ###Klassehierarki
-	Spillet består av følgene klasser:
+	Spillet består av følgene klasser med tilhørende header-filer:
 	- Kort
 	- Kortstokk
 	- Spiller
+	
+	+--------------------+		+----------------------+ 		+---------------------------+
+	|Kort		     |		|Kortstokk	       |		|Spiller		    |
+	|--------------------|		|----------------------|		|---------------------------|
+	|suit_	 char	     |		|stokken  vector<Kort> |		|navn	string		    |
+	|value_	 int	     |		|kastet	  vector<Kort> |		|saldo	int		    |
+	|		     |		|		       |		|hand	vector<Kort*>	    |
+	|--------------------|		|----------------------|		|---------------------------|
+	|getsuit() : char    |		|empty() : bool	       |		|getnavn() : string	    |
+	|getvalue() : int    |		|stokk() : void	       |		|getsaldo() : int	    |
+	|toString() : string |		|del() : Kort*	       |		|gethand() : vector<Kort*>* |
+	+--------------------+		+----------------------+		|hit(Kort*) : void	    |
+										|updateSaldo(int) : int     |
+										|throwhand() : void	    |
+										+---------------------------+
+
 	 
 ##Andre refleksjoner
 Det har vært mange utfordringer med denne oppgaven. Etter å ha mest erfaring med java-programmering, så er det her et stort knippe med "uforståelige" feil som oppstår.(de blir heldigvis litt mer forståelige etterhvert).
