@@ -20,7 +20,7 @@ Spillet er implementert med enkle spilleregler. Man blir bedt om å velge fra 1-
 	- Spiller
 	
 	+--------------------+	+----------------------+  +---------------------------+
-	|Kort                |  |Kortstokk	       |  |Spiller                    |
+	|Kort                |  |Kortstokk             |  |Spiller                    |
 	|--------------------|  |----------------------|  |---------------------------|
 	|suit_	 char	     |  |stokken  vector<Kort> |  |navn	  string              |
 	|value_	 int	     |  |kastet	  vector<Kort> |  |saldo  int                 |
