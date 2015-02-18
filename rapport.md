@@ -19,20 +19,20 @@ Spillet er implementert med enkle spilleregler. Man blir bedt om å velge fra 1-
 	- Kortstokk
 	- Spiller
 	
-	+--------------------+		+----------------------+ 		+---------------------------+
-	|Kort		     |		|Kortstokk	       |		|Spiller		    |
-	|--------------------|		|----------------------|		|---------------------------|
-	|suit_	 char	     |		|stokken  vector<Kort> |		|navn	string		    |
-	|value_	 int	     |		|kastet	  vector<Kort> |		|saldo	int		    |
-	|		     |		|		       |		|hand	vector<Kort*>	    |
-	|--------------------|		|----------------------|		|---------------------------|
-	|getsuit() : char    |		|empty() : bool	       |		|getnavn() : string	    |
-	|getvalue() : int    |		|stokk() : void	       |		|getsaldo() : int	    |
-	|toString() : string |		|del() : Kort&#8727	       |		|gethand() : vector<Kort&#8727>* |
-	+--------------------+		+----------------------+		|hit(Kort*) : void	    |
-										|updateSaldo(int) : int     |
-										|throwhand() : void	    |
-										+---------------------------+
+	+--------------------+	+----------------------+  +---------------------------+
+	|Kort                |	|Kortstokk	       |  |Spiller		      |
+	|--------------------|	|----------------------|  |---------------------------|
+	|suit_	 char	     |	|stokken  vector<Kort> |  |navn	  string	      |
+	|value_	 int	     |	|kastet	  vector<Kort> |  |saldo  int		      |
+	|                    |  |		       |  |hand	  vector<Kort*>	      |
+	|--------------------|  |----------------------|  |---------------------------|
+	|getsuit() : char    |	|empty() : bool	       |  |getnavn() : string	      |
+	|getvalue() : int    |	|stokk() : void	       |  |getsaldo() : int	      |
+	|toString() : string |	|del() : Kort*	       |  |gethand() : vector<Kort*>* |
+	+--------------------+	+----------------------+  |hit(Kort*) : void	      |
+							  |updateSaldo(int) : int     |
+							  |throwhand() : void	      |
+							  +---------------------------+
 
 	 
 ##Andre refleksjoner
