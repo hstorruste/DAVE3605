@@ -9,13 +9,13 @@
 
 using namespace std;
 
-int score( vector<Kort>* hand_){
-  vector<Kort> hand = *hand_;
+int score( vector<Kort*>* hand_){
+  vector<Kort*> hand = *hand_;
   //Regner sammen poeng på en hånd
   int sum{0};
   int aces{0}; //Antall ess
-  for(Kort k : hand){
-    int temp = k.getvalue();
+  for(Kort* k : hand){
+    int temp = k->getvalue();
     if(temp == 1){  // Sjekker om det er et ess
       aces++;
       temp = 11;
@@ -33,8 +33,8 @@ int score( vector<Kort>* hand_){
 } // end of function
 
 //Returnerer true hvis hand er under 17, false hvis 17 eller mer.
-bool dealerhit( vector<Kort>* hand_){
-  vector<Kort> hand = *hand_;
+bool dealerhit( vector<Kort*>* hand_){
+  vector<Kort*> hand = *hand_;
   int sum = score(&hand);
   bool hit{false};
   if(sum < 17){
@@ -140,14 +140,26 @@ int main(){
   
   /*Deler kort*/
   for(vector<Spiller>::iterator it=spiller.begin();it != spiller.end(); ++it){
-    it->hit(stokk.del());
-    it->hit(stokk.del());
+    if(!stokk.empty())
+      it->hit(stokk.del());
+    else
+      cout << "Not enough cards!" << endl;
+    if(!stokk.empty())
+      it->hit(stokk.del());
+    else
+      cout << "Not enough cards!" << endl;
   }
   
    //Dealer
-  vector<Kort> dealer{};
-  dealer.push_back(*stokk.del());
-  dealer.push_back(*stokk.del());
+  vector<Kort*> dealer{};
+  if(!stokk.empty())
+    dealer.push_back(stokk.del());
+  else
+    cout << "Not enough cards!" << endl;
+  if(!stokk.empty())
+    dealer.push_back(stokk.del());
+  else
+    cout << "Not enough cards!" << endl;
 
   /*Spillet begynner*/
   int antSpillere = spiller.size();
@@ -155,7 +167,7 @@ int main(){
  
   bool dealdraw = false; //Sjekk om dealer trenger å spille
   for(vector<Spiller>::iterator it=spiller.begin();it != spiller.end(); ++it){
-    cout << "Dealer has: " << dealer.begin()->toString() << endl;
+    cout << "Dealer has: " << (*dealer.begin())->toString() << endl;
     
     /* Leser input HIT or STAY */
     string input = "";
@@ -163,7 +175,7 @@ int main(){
     vector<Kort*>* hand = it->gethand();
     for(Kort* k : *hand)
       cout << k->toString();
-    cout << endl;
+    cout << " (" << score(hand) << ")" << endl;
     while(true){
       
       cout <<"Do you HIT(h) or STAY(s)? ";
@@ -172,13 +184,19 @@ int main(){
       //Leser inn første char og sammenligner
       stringstream myStream(input);
       char c{'a'};
+      int sum{0};
       myStream.get(c);
       if(c == 'h'){  // Tar et kort til
-	it->hit(stokk.del());
+	if(!stokk.empty())
+	  it->hit(stokk.del());
+	else{
+	  cout << "No more cards!" << endl;
+	  break;
+	}
 	cout << it->getnavn() << " has: ";
 	for(Kort* k : *hand)
 	  cout << k->toString();
-	cout << endl;
+	cout << " (" << score(hand) << ")" << endl;
       }
       else if(c == 's'){
 	break;
@@ -186,14 +204,14 @@ int main(){
       else{
 	cout << "Invalid input, please try again" << endl;
       }
+      poengsum[i] = score(hand);
+      if(poengsum[i] > BLACKJACK)
+	break;
     }
-    vector<Kort> temphand{};
-    for(Kort* k : *hand)
-      temphand.push_back(*k);
-    poengsum[i] = score(&temphand);
+    poengsum[i] = score(hand);
     cout << it->getnavn() << " has: ";
     cout << poengsum[i] << endl;
-    if(poengsum[i] == BLACKJACK && temphand.size() == 2){
+    if(poengsum[i] == BLACKJACK && hand->size() == 2){
        cout << "BLACKJACK!" << endl;
     }else if(poengsum[i] > BLACKJACK){
       cout << "BUST!" << endl;
@@ -210,7 +228,7 @@ int main(){
   bool dealbj = false;
   if(dealdraw){
     while(dealerhit(&dealer))
-      dealer.push_back(*stokk.del());
+      dealer.push_back(stokk.del());
 
     sumDealer = score( &dealer );
     cout << "Dealer: " << sumDealer;
@@ -229,10 +247,7 @@ int main(){
   i=0;
   for(vector<Spiller>::iterator it=spiller.begin();it != spiller.end(); ++it){
     cout << it->getnavn() << " ";
-    vector<Kort> temphand{};
-    for(Kort* k : *it->gethand())
-      temphand.push_back(*k);
-    poengsum[i] = score(&temphand); // spiller sin poengsum
+    poengsum[i] = score(it->gethand()); // spiller sin poengsum
     bool push = false;
     bool gevinst = false;
     if(poengsum[i] == BLACKJACK && it->gethand()->size() == 2){
