@@ -43,8 +43,13 @@ Det som oftest gav meg hodebry var når jeg forsøkte å bruke arrayer. Disse op
 Pass by reference vs pass by value. Det ble jeg etterhvert flinkere på, men jeg er nok ikke konsekvent i hvor jeg bruker det ene eller det andre. Hadde jeg hatt mere tid skulle jeg gjerne gått igjennom å rensket opp mange småe detaljer.
 
 
-##Oppdatering 04.03
+##Oppdatering 
+*04.03*
 - Jeg fjernet mulighet for å ta 'hit' etter at man har gått over 21. 
 - Lagt inn sikring (if-test) slik at kortstokken ikke blir tom, og kaster en 'std::out-of-range'-exception.
 - Man ser nå hvor mange poeng man har på hånden.
 - Mer flittig bruk av pekere, slik at det ikke lages 'kopier' av kort. Kortene eksisterer bare ett sted i minne. Gjelder spesielt score-metoden i blackjack.cpp. 
+
+*09.03*
+- Forbedret toString() til kortene.
+- Ser nå hele hånden til dealer etter endt spill.

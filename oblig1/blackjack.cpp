@@ -167,7 +167,17 @@ int main(){
  
   bool dealdraw = false; //Sjekk om dealer trenger å spille
   for(vector<Spiller>::iterator it=spiller.begin();it != spiller.end(); ++it){
-    cout << "Dealer has: " << (*dealer.begin())->toString() << endl;
+    Kort* k = *dealer.begin();
+    int v = k->getvalue();
+    cout << "Dealer has: " << k->toString();
+    cout << " (";
+    if(v == 1)
+      cout << "11";
+    else if(v > 10)
+      cout << "10";
+    else
+      cout << v;
+    cout << ") "<< endl;
     
     /* Leser input HIT or STAY */
     string input = "";
@@ -184,7 +194,6 @@ int main(){
       //Leser inn første char og sammenligner
       stringstream myStream(input);
       char c{'a'};
-      int sum{0};
       myStream.get(c);
       if(c == 'h'){  // Tar et kort til
 	if(!stokk.empty())
@@ -231,7 +240,11 @@ int main(){
       dealer.push_back(stokk.del());
 
     sumDealer = score( &dealer );
-    cout << "Dealer: " << sumDealer;
+
+    cout << "Dealer: ";
+    for(Kort* k : dealer)
+      cout << k-> toString();
+    cout << " (" << sumDealer << ")";
     if(sumDealer == BLACKJACK && dealer.size() == 2){
       cout << " BLACKJACK!";
       dealbj = true;

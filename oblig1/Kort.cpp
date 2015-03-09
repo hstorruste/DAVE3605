@@ -21,7 +21,7 @@ int Kort::getvalue(){
 }
 
 string Kort::toString(){
-  string s{suit_};
+  string s{};
   switch(value_){
   case 1 :
     s+="A";
@@ -39,5 +39,6 @@ string Kort::toString(){
   default :
     s+=to_string(value_);
   }
+  s+=suit_;
   return s;
 }
