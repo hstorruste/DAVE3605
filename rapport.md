@@ -55,5 +55,5 @@ Pass by reference vs pass by value. Det ble jeg etterhvert flinkere på, men jeg
 - Ser nå hele hånden til dealer etter endt spill.
 
 *10.03*
-- Delt opp main metode: ny metode i blackjack.cpp::placebet
+- Delt opp main metode: nye metoder i blackjack::placebet, blackjack::playerhit
 - Når en spiller går tom for penger blir den eliminert fra spillet, istedenfor at hele spillet avslutter.  
