@@ -53,3 +53,7 @@ Pass by reference vs pass by value. Det ble jeg etterhvert flinkere på, men jeg
 *09.03*
 - Forbedret toString() til kortene.
 - Ser nå hele hånden til dealer etter endt spill.
+
+*10.03*
+- Delt opp main metode: ny metode i blackjack.cpp::placebet
+- Når en spiller går tom for penger blir den eliminert fra spillet, istedenfor at hele spillet avslutter.  

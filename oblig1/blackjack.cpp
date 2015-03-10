@@ -100,6 +100,43 @@ void opprettSpillere(vector<Spiller> *spiller_){
 
 } // end of opprettSpillere
 
+void placebet(vector<Spiller>* s , vector<int>* b){
+  vector<Spiller>* spiller = s;
+  vector<int>* belop = b;
+
+  string input = "";
+  int i{0};
+  for(vector<Spiller>::iterator it=spiller->begin();it != spiller->end();){
+    Spiller s = *it;
+    int temp;
+    while(s.getsaldo() != 0){
+      cout << s.getnavn() << ", how much do you want to bet? (1 - "
+	   << s.getsaldo() << ")\n";
+      getline(cin, input);
+    
+      //Konverterer fra string til int
+      stringstream myStream(input);
+      if(myStream >> temp)
+	if(temp > 0 && temp <= s.getsaldo()) //Beløp må være gyldig
+	  break;
+    
+	  cout << "Invalid number, please try again" << endl;
+    } //end of while
+    
+    if(s.getsaldo() == 0){
+      cout << s.getnavn();
+      cout << " is out of money and out of the game!" <<  endl;
+      spiller->erase(spiller->begin()+i);
+    }else{
+      cout << s.getnavn() << " is betting " << temp << ",-" << endl;
+      belop->push_back(temp);
+      ++it;
+    }
+
+  }//end of for
+
+}//end of function placebet
+
 int main(){
 
   Kortstokk stokk{};
@@ -112,32 +149,8 @@ int main(){
   while(true){  
     stokk.stokk();
     /* Satse penger */
-  int belop[spiller.size()];
-  string input = "";
-  int i{0};
-  for(vector<Spiller>::iterator it=spiller.begin();it != spiller.end(); ++it){
-    Spiller s = *it;
-    while(s.getsaldo() != 0){
-      cout << s.getnavn() << ", how much do you want to bet? (1 - "
-	   << s.getsaldo() << ")\n";
-      getline(cin, input);
-    
-      //Konverterer fra string til int
-      stringstream myStream(input);
-      if(myStream >> belop[i])
-	if(belop[i] > 0 && belop[i] <= s.getsaldo()) //Beløp må være gyldig
-	  break;
-    
-	  cout << "Invalid number, please try again" << endl;
-    }
-    if(s.getsaldo() == 0){
-      cout << s.getnavn() << " is out of money!\nExiting..." <<  endl;
-      return 0;
-    }else
-      cout << s.getnavn() << " is betting " << belop[i] << ",-" << endl;
-    i++;
-  }
-  
+    vector<int> belop{};
+    placebet(&spiller, &belop);
   /*Deler kort*/
   for(vector<Spiller>::iterator it=spiller.begin();it != spiller.end(); ++it){
     if(!stokk.empty())
@@ -164,7 +177,7 @@ int main(){
   /*Spillet begynner*/
   int antSpillere = spiller.size();
   int poengsum[antSpillere];
- 
+  int i{0};
   bool dealdraw = false; //Sjekk om dealer trenger å spille
   for(vector<Spiller>::iterator it=spiller.begin();it != spiller.end(); ++it){
     Kort* k = *dealer.begin();
@@ -228,7 +241,7 @@ int main(){
     else
       dealdraw = true; //Dealer må spille
     cout << endl;
-    i++;
+    ++i;
   }
   
   /*Dealer draws*/
@@ -258,28 +271,29 @@ int main(){
 
   /*Ordner gevinst og tap*/
   i=0;
+  vector<int>::iterator itbelop=belop.begin();
   for(vector<Spiller>::iterator it=spiller.begin();it != spiller.end(); ++it){
     cout << it->getnavn() << " ";
     poengsum[i] = score(it->gethand()); // spiller sin poengsum
     bool push = false;
     bool gevinst = false;
     if(poengsum[i] == BLACKJACK && it->gethand()->size() == 2){
-      it->updateSaldo((belop[i]*3)/2);  //Gevinst BLACKJACK
+      it->updateSaldo((*itbelop*3)/2);  //Gevinst BLACKJACK
       gevinst = true;
     }
     else if( poengsum[i] > BLACKJACK ){
-      it->updateSaldo(-belop[i]);      //Tap (bust)
+      it->updateSaldo(-*itbelop);      //Tap (bust)
     }
     else if(dealbj)
-	it->updateSaldo(-belop[i]);      //Tap (dealer blackjack)
+	it->updateSaldo(-*itbelop);      //Tap (dealer blackjack)
     else if(dealbust){
-	it->updateSaldo(belop[i]);      //Gevinst (dealer bust)
+	it->updateSaldo(*itbelop);      //Gevinst (dealer bust)
 	gevinst = true;
     }
     else if(sumDealer > poengsum[i])  //Tap (dealer mer en spiller)
-      it->updateSaldo(-belop[i]);      
+      it->updateSaldo(-*itbelop);      
     else if(sumDealer < poengsum[i]){    //Gevinst (spiller mer en dealer)
-      it->updateSaldo(belop[i]);      
+      it->updateSaldo(*itbelop);      
 	  gevinst = true;      
     } else push = true;
     i++;
@@ -291,12 +305,15 @@ int main(){
       cout << "LOST!" << endl;
     cout << "New balance: " << it->getsaldo() << endl;
     it->throwhand();
+    ++itbelop;
   }
   
-
+  string input = "";
   while(true){
+    if(spiller.size()==0) //Ingen spillere igjen
+      return 0;
     cout << "Play again? (y/n)\n";
-      getline(cin, input);
+    getline(cin, input);
     
       //Leser inn første char og sammenligner
       stringstream myStream(input);
