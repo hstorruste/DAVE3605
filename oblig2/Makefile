@@ -6,8 +6,8 @@ endif
 
 LDOPTS:=$(shell fltk-config --ldflags)
 
-SRC:=has_color.cpp is_vector.cpp    #cpp-filer
-OBJECTS:=has_color.o is_vector.o
+SRC:=has_color.cpp is_vector.cpp dot.cpp    #cpp-filer
+OBJECTS:=has_color.o is_vector.o dot.o
 BINARY=fireworks
 
 all: info classes

@@ -7,7 +7,7 @@ typedef unsigned int Color;
 typedef unsigned char ColorPart;
 
 class has_color{
-  //  virtual void draw()=0;
+  virtual void draw()=0;
   Color color_=FL_WHITE;
   ColorPart* red_;
   ColorPart* green_;
@@ -33,11 +33,7 @@ public:
   inline Color color(){ return color_; };
   inline ColorPart red(){ return *red_; } ;
   inline ColorPart green(){ return *green_; };
-  inline ColorPart blue(){ return *blue_; };
-  
-  //Destruktor: Obs! hører ikke hjemme her, bare under testeing!
-  //Må deklareres i classene som arver has_color, de får ansvar for å destruere
-  ~has_color();
+  inline ColorPart blue(){ return *blue_; };  
 };
 
 #endif
