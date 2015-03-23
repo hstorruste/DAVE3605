@@ -47,7 +47,7 @@ int main(){
   cout << "Speed: " << dot1.speed() << endl;
   cout << "Retning(Rad): " << dot1.direction() << endl;
   
-  for(int i=0;i<5;i++){
+  /*  for(int i=0;i<5;i++){
     dot1.darken_color();
     Color col = dot1.color();
     ColorPart* p = (ColorPart*)&col;
@@ -73,15 +73,25 @@ int main(){
     cout << "Rød: " << (int)dot1.red() << endl;
     cout << "Grønn: " << (int)dot1.green() << endl;
     cout << "Blå: " << (int)dot1.blue() << endl;
-  }
+    }*/
 
-  /*  dot1.increment_position();
-  dot1.increment_position();
-  dot1.increment_position();
+  //dot1.increment_position();
+  //dot1.increment_position();
+  //dot1.increment_position();
+  ++dot1;
+  ++dot1;
+  ++dot1;
   cout << "Dot'en har posisjon: ( " << dot1.x() << ", " << dot1.y();
   cout << " )" << endl;
   cout << "Speed: " << dot1.speed() << endl;
-  cout << "Retning(Rad): " << dot1.direction() << endl;*/
+  cout << "Retning(Rad): " << dot1.direction() << endl;
+ 
+
+  dot1.reset();
+  cout << "Dot'en har posisjon: ( " << dot1.x() << ", " << dot1.y();
+  cout << " )" << endl;
+  cout << "Speed: " << dot1.speed() << endl;
+  cout << "Retning(Rad): " << dot1.direction() << endl;
   
    
   /*  int test{1918986818};
