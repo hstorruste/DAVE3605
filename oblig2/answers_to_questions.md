@@ -1,7 +1,7 @@
 ##4)Kortsvarspørsmål
 
 1.  Når animated har et protected datamedlem vil det si at den er tilgjengelig ikke bare av den klassen,
-    men også av de som arver denne klassen.
+    men også av de som arver denne klassen. Jeg bruker den til å telle hvor mange inkrementeringer jeg har gjort for hver dot.      Det virker dog noe diffust hvordan man skal bruke denne variablen. En annen løsning hadde vært å bruke en static variabel       inne i operator overloadingen. Den vil "huske" sin tilstand, selv om den går ut av scop.
 2. 
 3.
 4.
