@@ -20,7 +20,6 @@ rocket::rocket(int _dotcount, int dotsize, int _fuse, int x, int y) :
 rocket::~rocket(){
   for(dot* d : dots)
     delete d;
-
 }
 
 void rocket::operator++(){
@@ -34,6 +33,5 @@ void rocket::operator++(){
 	dots.erase(dots.begin()+i);
       }
     }
-  }
-    
+  }    
 }

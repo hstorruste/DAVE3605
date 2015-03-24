@@ -32,7 +32,12 @@ void animation_canvas::draw(){
 }
 
 void animation_canvas::increment(){
-  for(animated* part : parts){
-    ++*part;
+  for(int i=0; i<parts.size();i++){
+    if(parts[i]->animation_finished()){
+      delete parts[i];
+      parts.erase(parts.begin()+i);
+    }
+    else
+      ++*parts[i];
   }
 }

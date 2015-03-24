@@ -27,9 +27,10 @@ void dot::clear(){
 }
 
 void dot::operator++(){
-  if(t%5 == 0)
+  static int inc=0;
+  inc++;
+  if(inc%4 == 0)
     darken_color();
-  t++;
   increment_position();
   draw();
 }

@@ -15,9 +15,10 @@ has_color::has_color(bool Random) :
     //Vil ha overvekt av orange=0xffa500;
     unsigned seed=std::chrono::system_clock::now().time_since_epoch().count();
     std::mt19937 gen(seed);
-    ColorPart red= gen()%(128)+128; //Minst halvparten av rød i orange
-    ColorPart green=gen()%(128)+82; //Minst halvparten av grønn i orange
-    ColorPart blue=gen()%128;
+    std::uniform_int_distribution<int> distrib(0,127);
+    ColorPart red= distrib(gen)+128; //Minst halvparten av rød i orange
+    ColorPart green=distrib(gen)+82; //Minst halvparten av grønn i orange
+    ColorPart blue=distrib(gen);
     color_=fl_rgb_color(red,green,blue); //Returnerer fl_color nærmest rgb
   } 
   Fl::get_color(color_, *red_, *green_, *blue_); //Setter rgb for fl_color
