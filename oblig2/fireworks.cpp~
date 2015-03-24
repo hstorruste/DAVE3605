@@ -1,0 +1,17 @@
+#include "fireworks.hpp"
+#include "rocket.hpp"
+
+//Konstruktør
+fireworks::fireworks(const char* title, int w, int h, int _rocketcount) :
+  animation_canvas(title, w, h), rocketcount{_rocketcount}
+{
+  for(int i=0;i < rocketcount; i++){
+    animated *r = new rocket{100,10,10,120,90};
+    add(r);
+  }
+}
+
+//Destruktør
+fireworks::~fireworks(){
+
+}

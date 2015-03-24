@@ -9,13 +9,13 @@ void dot::draw(){
 dot::dot(float _x, float _y, float _r) : 
   is_vector(_x,_y), has_color(true), r{_r}
 {
-  animated::t=1;
+  animated::t=1
 }
 
 dot::dot(float _x, float _y, float _r, Color c) :
   is_vector(_x,_y), has_color(c), r{_r}
 {
-  animated::t=1;
+  animated::t{1}
 }
 
 dot::~dot(){
@@ -27,7 +27,7 @@ void dot::clear(){
 }
 
 void dot::operator++(){
-  if(t%5 == 0)
+  //if(t%20 == 0)
     darken_color();
   t++;
   increment_position();

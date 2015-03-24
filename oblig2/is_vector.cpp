@@ -1,15 +1,15 @@
 #include "is_vector.hpp"
-#include <ctime>
-#include <cstdlib> //rand()
-
+#include <random>
+#include <chrono>
 //konstuktører
 is_vector::is_vector(double x, double y) :
   x_orig_{x}, y_orig_{y}, x_{x}, y_{y}
 {
   //assign speed and direction randomly
-  srand(time(0));
-  speed_=rand() % 5 + 1;
-  direction_=(rand()%1000)*TAU/1000; //1000 forskjellige retninger
+  unsigned seed=std::chrono::system_clock::now().time_since_epoch().count();
+  std::mt19937 gen(seed);
+  speed_=gen() % 20 + 1;
+  direction_=(gen()%1000)*TAU/1000; //1000 forskjellige retninger
 }
 
 //Increment the position based on current position, speed and direction
