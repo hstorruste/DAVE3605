@@ -27,8 +27,12 @@ void rocket::operator++(){
   if(fuse > 0)
     --fuse;
   else{
-    for(dot* d : dots){
-      ++*d;
+    for(int i=0;i<dots.size();i++){
+      ++*dots[i];
+      if(dots[i]->visibility()<0.05){
+	delete dots[i];
+	dots.erase(dots.begin()+i);
+      }
     }
   }
     

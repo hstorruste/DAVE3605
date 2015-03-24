@@ -12,14 +12,17 @@ using namespace std;
 
 int main(){
   
-  int width=800;
-  int height=600;
+  int width=Fl::w();
+  int height=Fl::h();
   Fl_Window* window=new Fl_Window{width,height, "Fireworks!"};
-  fireworks* fwork=new fireworks{"", width, height,15};
   window->color(FL_BLACK);
+  window->fullscreen();
+  fireworks* fwork=new fireworks{"", width, height,15};
+  
+  
   //fwork->color(FL_BLACK);
   //  double interval = (double)1/fwork->fps;
-  Fl::add_timeout(0.1, animation_canvas::timer, window);
+  Fl::add_timeout(1, animation_canvas::timer, window);
 
   window->end();
 

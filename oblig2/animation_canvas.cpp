@@ -3,7 +3,7 @@
 #include <Fl/Fl_Window.H>
 
 //Static member
-int animation_canvas::fps=20; //12 frames pr sekund
+int animation_canvas::fps=20; //frames pr sekund
 
 //Konstruktør
 animation_canvas::animation_canvas(const char *l, int w, int h) :

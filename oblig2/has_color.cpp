@@ -57,4 +57,6 @@ void has_color::lighten_color(){
 }
 
 // Return the approximate visibility of the color, from 0-1
-float has_color::visibility(){}
+float has_color::visibility(){
+  return (float)(*red_+*green_+*blue_)/(255*3);
+}
