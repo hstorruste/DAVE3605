@@ -27,7 +27,6 @@ has_color::has_color(bool Random) :
 
 //Initialiser med en full farge
 has_color::has_color(Color start) : 
-  //color_{start},
   red_{(ColorPart*)&color_+3}, 
   green_{(ColorPart*)&color_+2}, 
   blue_{(ColorPart*)&color_+1}
@@ -48,13 +47,11 @@ has_color::has_color(ColorPart red, ColorPart green, ColorPart blue) :
 // Make color darker
 void has_color::darken_color(){
   color_=fl_darker(color_);
-  // Fl::get_color(color_, *red_, *green_, *blue_); //Setter rgb for fl_color
 }
 
 // Make color lighter
 void has_color::lighten_color(){
   color_=fl_lighter(color_);
-  //Fl::get_color(color_, *red_, *green_, *blue_); //Setter rgb for fl_color
 }
 
 // Return the approximate visibility of the color, from 0-1

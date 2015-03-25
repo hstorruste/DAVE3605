@@ -10,10 +10,22 @@ SRC:=has_color.cpp is_vector.cpp dot.cpp rocket.cpp animation_canvas.cpp firewor
 OBJECTS:=has_color.o is_vector.o dot.o rocket.o animation_canvas.o fireworks.o
 BINARY=fireworks
 
-all: info classes
+SRC2:=has_color.cpp is_vector.cpp dot.cpp rocket2.cpp
+OBJECTS2:=has_color.o is_vector.o dot.o rocket2.o
+BINARY2=fireworks2
+
+.PHONY: fireworks fireworks2
+
+fireworks: all1
+
+fireworks2: all2
+
+all1: info classes1
 	g++ -std=c++11 main.cpp $(OBJECTS) -o $(BINARY) $(LDOPTS)
-	
-	
+
+all2: info classes2
+	g++ -std=c++11 main.cpp $(OBJECTS2) -o $(BINARY2) $(LDOPTS)
+
 # Skriv ut litt info om FLTK lokalt
 info:
 	@echo "==================== BIULDING FOR FLTK ================================"
@@ -26,13 +38,19 @@ info:
 
 
 # Bygg, med valgte opsjoner
-classes:
+classes1:
 	@echo "Building for "$(FLTK)
 	g++ -std=c++11 -c $(SRC) $(LDOPTS)
 	@echo 
 	@echo 'Done. Run with ./'$(BINARY)
 	@echo 
 
+classes2:
+	@echo "Building for "$(FLTK)
+	g++ -std=c++11 -c $(SRC2) $(LDOPTS)
+	@echo 
+	@echo 'Done. Run with ./'$(BINARY2)
+	@echo 
 
 clean:
 	$(RM) $(BINARY)

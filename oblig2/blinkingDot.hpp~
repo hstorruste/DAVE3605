@@ -1,0 +1,20 @@
+#include "dot.hpp"
+
+class blinkingDot : public dot{
+
+
+public:
+  
+  /** Initialize the dot */
+  dot(float _x,float _y, float _r);
+
+  /** Initialize the dot with a starting color */
+  dot(float _x,float _y, float _r, Color c);
+
+  /**Virtual destructor. */
+  ~blinkingDot() override;
+
+  void operator++() override;
+
+
+}
