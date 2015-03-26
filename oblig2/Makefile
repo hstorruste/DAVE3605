@@ -6,11 +6,11 @@ endif
 
 LDOPTS:=$(shell fltk-config --ldflags)
 
-SRC:=has_color.cpp is_vector.cpp dot.cpp #Felles cpp-filer
-OBJECTS:=has_color.o is_vector.o dot.o  #Felles
+SRC:=has_color.cpp is_vector.cpp dot.cpp animation_canvas.cpp #Felles cpp-filer
+OBJECTS:=has_color.o is_vector.o dot.o animation_canvas.o  #Felles
 
-SRC1:=rocket.cpp animation_canvas.cpp fireworks.cpp   #fireworks sine cpp-filer
-OBJECTS1:=rocket.o animation_canvas.o fireworks.o #fireworks
+SRC1:=rocket.cpp fireworks.cpp   #fireworks sine cpp-filer
+OBJECTS1:=rocket.o fireworks.o #fireworks
 BINARY1=fireworks
 
 SRC2:=rocket2.cpp #fireworks2 sine cpp-filer
@@ -63,4 +63,6 @@ clean:
 	$(RM) $(OBJECTS)
 	$(RM) $(OBJECTS1)
 	$(RM) $(OBJECTS2)
+	$(RM) *.*~
+
 

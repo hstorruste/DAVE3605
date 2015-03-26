@@ -1,5 +1,0 @@
-#include "dot.hpp"
-
-//Konstuktører
-dot::dot(float _x, float _y, float _r) : 
-  r{_r}, 
