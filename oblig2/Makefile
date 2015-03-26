@@ -6,25 +6,30 @@ endif
 
 LDOPTS:=$(shell fltk-config --ldflags)
 
-SRC:=has_color.cpp is_vector.cpp dot.cpp rocket.cpp animation_canvas.cpp fireworks.cpp   #cpp-filer
-OBJECTS:=has_color.o is_vector.o dot.o rocket.o animation_canvas.o fireworks.o
-BINARY=fireworks
+SRC:=has_color.cpp is_vector.cpp dot.cpp #Felles cpp-filer
+OBJECTS:=has_color.o is_vector.o dot.o  #Felles
 
-SRC2:=has_color.cpp is_vector.cpp dot.cpp rocket2.cpp
-OBJECTS2:=has_color.o is_vector.o dot.o rocket2.o
+SRC1:=rocket.cpp animation_canvas.cpp fireworks.cpp   #fireworks sine cpp-filer
+OBJECTS1:=rocket.o animation_canvas.o fireworks.o #fireworks
+BINARY1=fireworks
+
+SRC2:=rocket2.cpp #fireworks2 sine cpp-filer
+OBJECTS2:=rocket2.o #fireworks2
 BINARY2=fireworks2
 
 .PHONY: fireworks fireworks2
+
+all: all1 all2
 
 fireworks: all1
 
 fireworks2: all2
 
 all1: info classes1
-	g++ -std=c++11 main.cpp $(OBJECTS) -o $(BINARY) $(LDOPTS)
+	g++ -std=c++11 main.cpp $(OBJECTS) $(OBJECTS1) -o $(BINARY1) $(LDOPTS)
 
 all2: info classes2
-	g++ -std=c++11 main.cpp $(OBJECTS2) -o $(BINARY2) $(LDOPTS)
+	g++ -std=c++11 main2.cpp $(OBJECTS) $(OBJECTS2) -o $(BINARY2) $(LDOPTS)
 
 # Skriv ut litt info om FLTK lokalt
 info:
@@ -40,17 +45,22 @@ info:
 # Bygg, med valgte opsjoner
 classes1:
 	@echo "Building for "$(FLTK)
-	g++ -std=c++11 -c $(SRC) $(LDOPTS)
+	g++ -std=c++11 -c $(SRC) $(SRC1) $(LDOPTS)
 	@echo 
-	@echo 'Done. Run with ./'$(BINARY)
+	@echo 'Done. Run with ./'$(BINARY1)
 	@echo 
 
 classes2:
 	@echo "Building for "$(FLTK)
-	g++ -std=c++11 -c $(SRC2) $(LDOPTS)
+	g++ -std=c++11 -c $(SRC) $(SRC2) $(LDOPTS)
 	@echo 
 	@echo 'Done. Run with ./'$(BINARY2)
 	@echo 
 
 clean:
-	$(RM) $(BINARY)
+	$(RM) $(BINARY1)
+	$(RM) $(BINARY2)
+	$(RM) $(OBJECTS)
+	$(RM) $(OBJECTS1)
+	$(RM) $(OBJECTS2)
+
