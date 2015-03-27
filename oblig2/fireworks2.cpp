@@ -1,6 +1,8 @@
 #include "fireworks.hpp"
 #include "rocket.hpp"
 #include "BlinkingDotFactory.hpp"
+#include "NormalDotFactory.hpp"
+#include "TintedDotFactory.hpp"
 #include <random>
 #include <chrono>
 
@@ -20,7 +22,13 @@ fireworks::fireworks(const char* title, int w, int h, int _rocketcount) :
     x=distribx(gen);
     y=distriby(gen);
     fuse=distribfuse(gen);
-    AbstractDotFactory* fact = new BlinkingDotFactory{5,x,y};
+    AbstractDotFactory* fact;
+    if(i%3==0)
+      fact= new BlinkingDotFactory{5,x,y};
+    else if(i%3==1)
+      fact= new NormalDotFactory{5,x,y};
+    else
+      fact= new TintedDotFactory{5,x,y, FL_BLUE};
     animated *r = new rocket{200,5,fuse,x,y,fact}; //Sette forskjellige rockets
     add(r);
     delete fact;

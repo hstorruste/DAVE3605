@@ -32,6 +32,10 @@ void rocket::operator++(){
   else
     for(int i=0; i<dots.size();i++){
       ++*dots[i];
+      if(dots[i]->visibility()<0.05){
+	delete dots[i];
+	dots.erase(dots.begin()+i);
+      }
     }
 }
 

@@ -9,13 +9,13 @@ void dot::draw(){
 dot::dot(float _x, float _y, float _r) : 
   is_vector(_x,_y), has_color(true), r{_r}
 {
-
+  t={0};
 }
 
 dot::dot(float _x, float _y, float _r, Color c) :
   is_vector(_x,_y), has_color(c), r{_r}
 {
-
+  t={0};
 }
 
 dot::~dot(){
@@ -27,9 +27,9 @@ void dot::clear(){
 }
 
 void dot::operator++(){
-  static int inc=0; //static variabel "husker" sin tilstand.
-  inc++;
-  if(inc%4 == 0) //For hver fjerde operatoren kalles, "fader" fargen litt
+  // static int inc=0; //static variabel "husker" sin tilstand.
+  t++;
+  if(t%4 == 0) //For hver fjerde operatoren kalles, "fader" fargen litt
     darken_color();
   increment_position();
   fl_color(color());
