@@ -32,6 +32,7 @@ void dot::operator++(){
   if(inc%4 == 0) //For hver fjerde operatoren kalles, "fader" fargen litt
     darken_color();
   increment_position();
+  fl_color(color());
   draw();
 }
 

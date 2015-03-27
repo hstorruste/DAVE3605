@@ -13,8 +13,9 @@ SRC1:=rocket.cpp fireworks.cpp   #fireworks sine cpp-filer
 OBJECTS1:=rocket.o fireworks.o #fireworks
 BINARY1=fireworks
 
-SRC2:=rocket2.cpp #fireworks2 sine cpp-filer
-OBJECTS2:=rocket2.o #fireworks2
+#fireworks2 sine filer
+SRC2:=blinkingDot.cpp BlinkingDotFactory.cpp rocket2.cpp fireworks2.cpp 
+OBJECTS2:=blinkingDot.o BlinkingDotFactory.o rocket2.o fireworks2.o 
 BINARY2=fireworks2
 
 .PHONY: fireworks fireworks2
@@ -57,12 +58,13 @@ classes2:
 	@echo 'Done. Run with ./'$(BINARY2)
 	@echo 
 
+#Fjerner kompilerte filer og backupfiler
 clean:
 	$(RM) $(BINARY1)
 	$(RM) $(BINARY2)
 	$(RM) $(OBJECTS)
 	$(RM) $(OBJECTS1)
 	$(RM) $(OBJECTS2)
-	$(RM) *.*~
+	$(RM) *.*~  
 
 

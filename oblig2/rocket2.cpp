@@ -1,5 +1,5 @@
 #include "rocket.hpp"
-
+#include "AbstractDotFactory.hpp"
 //Konstruktører
 //Initialize normal -rocket will just create default dots
 rocket::rocket(int _dotcount, int dotsize, int _fuse, int x , int y) :
@@ -10,10 +10,14 @@ rocket::rocket(int _dotcount, int dotsize, int _fuse, int x , int y) :
 }
 
 //Initialize with factory
-rocket::rocket(int _dotcount, int dotsize, int _fuse, int x , int y
+rocket::rocket(int _dotcount, int dotsize, int _fuse, int x , int y,
 	       AbstractDotFactory* dotFactory) :
   dotcount{_dotcount}, fuse{_fuse}
 {
+  for(int i=0; i<dotcount; i++){
+    dot* d= &*(dotFactory->createDot());
+    dots.push_back(d);
+  }
 }
 
 rocket::~rocket(){

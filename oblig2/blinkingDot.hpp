@@ -5,8 +5,8 @@
 #include "dot.hpp"
 
 class blinkingDot : public dot{
-
-
+  Color blackout=FL_BLACK;
+  //  Color color_=FL_WHITE;
 public:
   
   /** Initialize the dot */
@@ -17,8 +17,6 @@ public:
 
   /**Virtual destructor. */
   ~blinkingDot() override;
-
-  void draw() override;
 
   void operator++() override;
 

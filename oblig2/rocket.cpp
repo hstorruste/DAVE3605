@@ -9,13 +9,7 @@ rocket::rocket(int _dotcount, int dotsize, int _fuse, int x, int y) :
     dots.push_back(new dot(x, y, dotsize));
   }  
 }
-// Initialize with factory
-/*rocket::rocket(int _dotcount, int dotsize, int _fuse, int x, int y,
-	       AbstractDotFactory* dotFactory) :
-  dotcount{_dotcount}, fuse{_fuse}, dots(_dotcount)
-{
 
-}*/
 //Destruktør
 rocket::~rocket(){
   for(dot* d : dots)

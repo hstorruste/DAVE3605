@@ -2,6 +2,8 @@
 #include <random>
 #include <chrono>
 #include <Fl/fl_draw.H>
+#include <iostream>
+
 //konstruktører
 has_color::has_color(bool Random) : 
   red_{(ColorPart*)&color_+3}, 
@@ -47,6 +49,7 @@ has_color::has_color(ColorPart red, ColorPart green, ColorPart blue) :
 // Make color darker
 void has_color::darken_color(){
   color_=fl_darker(color_);
+  //  std::cout << "Farge: " << red_ << std::endl;
 }
 
 // Make color lighter
