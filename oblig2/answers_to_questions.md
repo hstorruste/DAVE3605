@@ -1,7 +1,7 @@
 ##4)Kortsvarspørsmål
 
-1.  Når animated har et protected datamedlem vil det si at den er tilgjengelig ikke bare av den klassen,
-    men også av de som arver denne klassen. Jeg bruker den til å telle hvor mange inkrementeringer jeg har gjort for hver dot.      Det virker dog noe diffust hvordan man skal bruke denne variablen. En annen løsning hadde vært å bruke en static variabel       inne i operator overloadingen. Den vil "huske" sin tilstand, selv om den går ut av scop.
+1.  Når animated har et 'protected' datamedlem vil det si at den er tilgjengelig ikke bare av den klassen, men også av de som arver denne klassen og av deres 'friend' klasser. Ved at et medlem er protected i en baseklasse, kan de som arver lett gjøre forandringer på verdien til dette datamedlemet samt å kalle på det ved å kun bruke navnet på den: Eks: 't=t+3;'. Ulempen med dette er at klasser som arver lett kan "ødelegge" koden, ved at de ikke helt vet hva denne variablen gjør, og setter den til en tilstand som er uheldig ved en feiltagelse. Et annet problem som kan oppstå er om en av de som arver oppretter et objekt med samme navn som denne variablen. Det vil da være usikkert om det er den lokale variablen eller protected variablen til baseklassen det refereres til.
+    En annen løsning vil være å gjøre den 'private' og ha get- og set-metode for å lese av og å forandre verdien. Man kan da velge å ha disse metodene protected eller public om det er det som er behovet. Et tilsvarende eksempel vil da bli: 'set_t(get_t()+3);'. Du ville da sluppet at arvende klasser så lett kan "ødelegge" ved en feiltagelse, og variabelnavnet vil være "ledig" for gjenbruk.
 2. 
 3.
 4.
