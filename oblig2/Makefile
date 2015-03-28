@@ -28,9 +28,15 @@ fireworks2: all2
 
 all1: info classes1
 	g++ -std=c++11 main.cpp $(OBJECTS) $(OBJECTS1) -o $(BINARY1) $(LDOPTS)
+	@echo 
+	@echo 'Done. Run with ./'$(BINARY1)
+	@echo 
 
 all2: info classes2
 	g++ -std=c++11 main2.cpp $(OBJECTS) $(OBJECTS2) -o $(BINARY2) $(LDOPTS)
+	@echo 
+	@echo 'Done. Run with ./'$(BINARY2)
+	@echo 
 
 # Skriv ut litt info om FLTK lokalt
 info:
@@ -47,16 +53,10 @@ info:
 classes1:
 	@echo "Building for "$(FLTK)
 	g++ -std=c++11 -c $(SRC) $(SRC1) $(LDOPTS)
-	@echo 
-	@echo 'Done. Run with ./'$(BINARY1)
-	@echo 
-
+	
 classes2:
 	@echo "Building for "$(FLTK)
 	g++ -std=c++11 -c $(SRC) $(SRC2) $(LDOPTS)
-	@echo 
-	@echo 'Done. Run with ./'$(BINARY2)
-	@echo 
 
 #Fjerner kompilerte filer og backupfiler
 clean:
