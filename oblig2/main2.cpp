@@ -1,6 +1,3 @@
-#include "blinkingDot.hpp"
-#include "rocket.hpp"
-#include "BlinkingDotFactory.hpp"
 #include "fireworks.hpp"
 #include <FL/fl_draw.H>
 #include <FL/Fl_Window.H>
