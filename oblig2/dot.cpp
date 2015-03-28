@@ -27,7 +27,6 @@ void dot::clear(){
 }
 
 void dot::operator++(){
-  // static int inc=0; //static variabel "husker" sin tilstand.
   t++;
   if(t%4 == 0) //For hver fjerde operatoren kalles, "fader" fargen litt
     darken_color();
