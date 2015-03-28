@@ -2,7 +2,6 @@
 #include <random>
 #include <chrono>
 #include <Fl/fl_draw.H>
-#include <iostream>
 
 //konstruktører
 has_color::has_color(bool Random) : 
@@ -17,10 +16,12 @@ has_color::has_color(bool Random) :
     //Vil ha overvekt av orange=0xffa500;
     unsigned seed=std::chrono::system_clock::now().time_since_epoch().count();
     std::mt19937 gen(seed);
-    std::uniform_int_distribution<int> distrib(0,127);
-    ColorPart red= distrib(gen)+128; //Minst halvparten av rød i orange
-    ColorPart green=distrib(gen)+82; //Minst halvparten av grønn i orange
-    ColorPart blue=distrib(gen);
+    std::uniform_int_distribution<int> distrib_r(224,255);
+    std::uniform_int_distribution<int> distrib_g(64,182);
+    std::uniform_int_distribution<int> distrib_b(8,32);
+    ColorPart red= distrib_r(gen); 
+    ColorPart green=distrib_g(gen);
+    ColorPart blue=distrib_b(gen); 
     color_=fl_rgb_color(red,green,blue); //Returnerer fl_color nærmest rgb
   } 
   Fl::get_color(color_, *red_, *green_, *blue_); //Setter rgb for fl_color
@@ -49,7 +50,6 @@ has_color::has_color(ColorPart red, ColorPart green, ColorPart blue) :
 // Make color darker
 void has_color::darken_color(){
   color_=fl_darker(color_);
-  //  std::cout << "Farge: " << red_ << std::endl;
 }
 
 // Make color lighter

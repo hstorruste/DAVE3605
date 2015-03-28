@@ -1,20 +1,21 @@
 #include "blinkingDot.hpp"
-#include <FL/Fl.H>
-#include <FL/fl_draw.H>
-#include <iostream>
+#include <chrono>
+#include <random>
 //Konstruktører
 blinkingDot::blinkingDot(float _x, float _y, float _r) :
   dot{_x,_y,_r}
 {
-  //color_=Fl::get_color(color_);
-  blackout=Fl::get_color(blackout);
+  
 }
 
 blinkingDot::blinkingDot(float _x, float _y, float _r, Color c) :
-  dot{_x,_y,_r,c}//, color_{c}
+  dot{_x,_y,_r,c}
 {
-  //color_=Fl::get_color(color_);
-  blackout=Fl::get_color(blackout);
+    unsigned seed=std::chrono::system_clock::now().time_since_epoch().count();
+    std::mt19937 gen(seed);
+    std::uniform_int_distribution<int> distrib(0,2);
+    t=distrib(gen);
+  
 }
 
 blinkingDot::~blinkingDot(){
@@ -22,7 +23,7 @@ blinkingDot::~blinkingDot(){
 
 void blinkingDot::operator++(){
   
-  ++t; //Bruker t, fungerte ikke med static int... (Den fadet ikke. Hvorfor?)
+  ++t;
   
   if(t%4 == 0){
     darken_color();

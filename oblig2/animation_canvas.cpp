@@ -14,7 +14,6 @@ animation_canvas::animation_canvas(const char *l, int w, int h) :
 
 void animation_canvas::timer(void* canvas){
   Fl::repeat_timeout((double)1/fps, timer, canvas);
-  std::cout << "Tick" << std::endl;
   ((Fl_Window*)canvas)->redraw();
 }
 

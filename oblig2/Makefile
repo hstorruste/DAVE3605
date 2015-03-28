@@ -14,8 +14,8 @@ OBJECTS1:=rocket.o fireworks.o #fireworks
 BINARY1=fireworks
 
 #fireworks2 sine filer
-SRC2:=blinkingDot.cpp BlinkingDotFactory.cpp NormalDotFactory.cpp tintedDot.cpp TintedDotFactory.cpp  rocket2.cpp fireworks2.cpp 
-OBJECTS2:=blinkingDot.o BlinkingDotFactory.o NormalDotFactory.o tintedDot.o TintedDotFactory.o rocket2.o fireworks2.o 
+SRC2:=blinkingDot.cpp BlinkingDotFactory.cpp NormalDotFactory.cpp tintedDot.cpp MixedDotFactory.cpp rocket2.cpp fireworks2.cpp 
+OBJECTS2:=blinkingDot.o BlinkingDotFactory.o NormalDotFactory.o tintedDot.o MixedDotFactory.o rocket2.o fireworks2.o 
 BINARY2=fireworks2
 
 .PHONY: fireworks fireworks2

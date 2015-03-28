@@ -8,7 +8,7 @@ is_vector::is_vector(double x, double y) :
   //assign speed and direction randomly
   unsigned seed=std::chrono::system_clock::now().time_since_epoch().count();
   std::mt19937 gen(seed);
-  std::uniform_real_distribution<double> distrib(1.0,15.0);
+  std::uniform_real_distribution<double> distrib(1.0,10.0);
   std::uniform_real_distribution<double> distrib2(0.0,TAU);
   speed_=distrib(gen); //Speed 1.0-15.0
   direction_=distrib2(gen);

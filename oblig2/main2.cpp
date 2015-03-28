@@ -2,8 +2,6 @@
 #include "rocket.hpp"
 #include "BlinkingDotFactory.hpp"
 #include "fireworks.hpp"
-#include <iostream>
-#include <string>
 #include <FL/fl_draw.H>
 #include <FL/Fl_Window.H>
 
@@ -25,8 +23,6 @@ int main(){
 
   Fl::run();
 
-  //  AbstractDotFactory* factory = new BlinkingDotFactory{5,20,40};
-  //  rocket* rock1 = new rocket{200,5,10,20,40, factory};
   delete fwork;
   delete window;
 }
