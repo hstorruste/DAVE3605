@@ -4,6 +4,10 @@
     
     En annen løsning vil være å gjøre den `private` og ha get- og set-metode for å lese av og å forandre verdien. Man kan da velge å ha disse metodene protected eller public om det er det som er behovet. Et tilsvarende eksempel vil da bli: `set_t(get_t()+3);`. Du ville da sluppet at arvende klasser så lett kan "ødelegge" ved en feiltagelse, og variabelnavnet vil være "ledig" for gjenbruk.
 2.  Det brukes jo metoder fra fltk bibloteket i bl.a `dot` klassen. Den har selv fått ansvar for å tegne seg selv med `draw()`, hvor man da må ha `fl_pie(..)`. Man kan jo tenke seg at man kan overskrive denne metoden, men `r` har ingen `get`-metode så dermed er det bare `dot.draw()` som kan ta seg av tegningen.
-3.
-4.
+3.  Man kunne kanskje hatt et namespace som het...
+4.  Skulle man brukt templates på `animation_canvas`...
 5.  Klassen has_color burde nok hatt en virituell destruktor, siden den har en virituell funksjon. Skulle man ønske å bruke en `has_color` peker til å holde et objekt av "My_class" som arver has_color og deretter sletter denne pekeren, så vil destruktoren i My_class kalles og man vil få memory-leaks hvis man har allokert minne med new i My_class. Det er heller ikke opplagt at man skal bruke red_, green_ og blue_ til å peke på de tre første bytene i color_. Man kan også løse dette ved å bruke `new` og deretter `Fl::get_color(Fl_Color i, uchar& red, uchar& green, uchar& blue)` for å sette r,g,b. Men dette vil også kreve at man har en destruktor til å destruere r,g,b.
+
+    Jeg kunne beholdt `TintedDotFactory.cpp` og eksplisitt sagt hvilke verdier `FL_BLUE`, `FL_RED` etc i slutten av fila for å redusere kompileringstiden noe, men dette hadde gjort kode mindre anvendelig senere, da man må gå inn å legge til nye godkjente verdier. Dette blir en smaksak.
+    
+    Det ville vært fint å kunne implementere funksjonen `animation_finished` fra `animated` i `rocket` og `dot`, men siden den ikke var med i headerfilene turte jeg ikke gjøre det. Vi hadde jo fått streng beskjed å ikke forandre dem.
