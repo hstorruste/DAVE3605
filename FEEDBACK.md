@@ -1,7 +1,12 @@
 # Oblig 1
 
 ### Resultat: 
-Lever på nytt
+Godkjent (v2)
+
+
+#### Update:
+
+Fint at du rettet opp i alle feilen, bra! Godkjent
 
 
 ### Checklist:
