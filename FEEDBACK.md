@@ -55,3 +55,47 @@ Hvis jeg gjør dette nok ganger vil jeg tømme helt kortstokken, og spillet vil 
 * Fjerne muligheten til å trekke kort (HIT) når player egentlig har gått bust.
 * *Legge inn bokstav for kledde kort og en utskrift av hvor mye hånden er verdt.* (Ikke noe krav..)
 * *Bryte ned main i flere funksjoner.* (Ikke noe krav...)
+
+
+---
+
+# Oblig 2
+
+### Resultat: 
+Godkjent
+
+
+### Checklist:
+* [x] Prosjektet innholder makefile med følgende kommando:
+	* [x] `make` - bygger fireworks
+	* [x] `make fireworks` - bygger fireworks
+	* [x] `make fireworks2` - bygger fireworks2
+	* [x] `make clean` - fjerner alle kompilerte filer
+	
+* [x] **fireworks** oppfyller kravene.
+	* [x] Raketter starter på forskjellig tid og plass.
+	* [x] Raketter har dotter med en hastighet og med ulike farger (med overvekt av en farge) og retning.
+	* [x] Arv og polymorfi er brukt slikt det er tenkt.
+	
+* [x] **fireworks2** oppfyller kravene.
+	* [x] Factory er implementert.
+	* [x] Template er implementert.
+
+* [x] Header-filene skal være uforandret.
+* [x] Ingen alvorlige kjøretidsfeil (segfault etc.)
+* [x] Ingen minnelekasjer funnet med `valgrind`.
+* [x] Repo innholder `answers_to_questions.md`.
+	* [x] Spørsmålene er godt besvart.
+
+* [] Det er laget en egen animasjon **(optional)**
+	* [] Kompileres med `make custom`.
+	* [] `animation_canvas` og `animated` er brukt.
+	* [] Minst tre animerte elementer.
+
+
+### Tilbakemelding:
+*Kommentar gis ved forespørsel.*
+
+#### Fix:
+
+---
