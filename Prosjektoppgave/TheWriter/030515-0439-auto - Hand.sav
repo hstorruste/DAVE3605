@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<game>
+ <writer spiller="Hand">
+  <money>2000</money>
+  <writing>1</writing>
+  <need>
+   <hunger>70.1786</hunger>
+   <sleep>88.1</sleep>
+   <inspiration>108.6</inspiration>
+  </need>
+  <current_book book_title="Truls" book_length="350">
+   <wordsThisHour_vector>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>80</quality>
+    <quality>150</quality>
+   </wordsThisHour_vector>
+   <totalWords_vector>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>530</quality>
+    <quality>150</quality>
+   </totalWords_vector>
+  </current_book>
+ </writer>
+ <time>
+  <days>1</days>
+  <hours>9</hours>
+  <minutes>59</minutes>
+  <seconds>0</seconds>
+ </time>
+</game>

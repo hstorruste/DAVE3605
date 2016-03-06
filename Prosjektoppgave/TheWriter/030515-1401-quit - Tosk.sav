@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<game>
+ <writer spiller="Tosk">
+  <money>2000</money>
+  <writing>0</writing>
+  <need>
+   <hunger>99.167</hunger>
+   <sleep>99.5</sleep>
+   <inspiration>100</inspiration>
+  </need>
+ </writer>
+ <time>
+  <days>1</days>
+  <hours>6</hours>
+  <minutes>5</minutes>
+  <seconds>0</seconds>
+ </time>
+</game>

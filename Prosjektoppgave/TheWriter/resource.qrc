@@ -1,0 +1,38 @@
+<RCC>
+    <qresource prefix="/stud">
+        <file>images/study/the_study.png</file>
+        <file>images/study/books.png</file>
+        <file>images/study/coffe.png</file>
+        <file>images/study/couch.png</file>
+        <file>images/study/desk.png</file>
+        <file>images/study/wine.png</file>
+        <file>images/study/writer.png</file>
+        <file>images/study/apple.png</file>
+        <file>images/study/window.png</file>
+        <file>images/study/left_hand.png</file>
+        <file>images/study/right_hand.png</file>
+        <file>images/study/computer.png</file>
+        <file>images/study/writer_head_left.png</file>
+        <file>images/study/writer_head_right.png</file>
+        <file>images/study/coffe_steam.png</file>
+    </qresource>
+    <qresource prefix="/other">
+        <file>images/pop_up_label.png</file>
+        <file>images/icons/pop_up_window.png</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file>images/icons/fast.png</file>
+        <file>images/icons/fastest.png</file>
+        <file>images/icons/pause.png</file>
+        <file>images/icons/play.png</file>
+    </qresource>
+    <qresource prefix="/weather">
+        <file>images/weather/clouded.png</file>
+        <file>images/weather/moon.png</file>
+        <file>images/weather/rain1.png</file>
+        <file>images/weather/rain2.png</file>
+        <file>images/weather/sun.png</file>
+        <file>images/study/light.png</file>
+        <file>images/study/night.png</file>
+    </qresource>
+</RCC>

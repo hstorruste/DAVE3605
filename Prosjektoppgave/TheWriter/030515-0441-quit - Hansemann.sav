@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<game>
+ <writer spiller="Hansemann">
+  <money>2000</money>
+  <writing>1</writing>
+  <need>
+   <hunger>64.5142</hunger>
+   <sleep>84.7</sleep>
+   <inspiration>86.5</inspiration>
+  </need>
+  <current_book book_title="" book_length="350">
+   <wordsThisHour_vector>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>245</quality>
+    <quality>0</quality>
+    <quality>0</quality>
+   </wordsThisHour_vector>
+   <totalWords_vector>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>0</quality>
+    <quality>280</quality>
+    <quality>525</quality>
+    <quality>75</quality>
+   </totalWords_vector>
+  </current_book>
+ </writer>
+ <time>
+  <days>1</days>
+  <hours>10</hours>
+  <minutes>33</minutes>
+  <seconds>0</seconds>
+ </time>
+</game>

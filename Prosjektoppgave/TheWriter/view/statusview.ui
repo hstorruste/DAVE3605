@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>StatusView</class>
+ <widget class="QWidget" name="StatusView">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>867</width>
+    <height>345</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QGroupBox" name="gpNeeds">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>30</y>
+     <width>341</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Needs</string>
+   </property>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>145</x>
+      <y>20</y>
+      <width>100</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="loNeedsLbl">
+     <item>
+      <widget class="QLabel" name="lblHunger">
+       <property name="text">
+        <string>Hunger</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Inspiration</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Sleep</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>131</width>
+      <height>92</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="loNeedsSld">
+     <item>
+      <widget class="QProgressBar" name="prgrHunger">
+       <property name="value">
+        <number>24</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QProgressBar" name="prgrInspiration">
+       <property name="value">
+        <number>24</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QProgressBar" name="prgrSleep">
+       <property name="value">
+        <number>24</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>20</y>
+      <width>81</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="loNeedsMP">
+     <item>
+      <widget class="QLabel" name="lblHungerMul">
+       <property name="text">
+        <string>hungermul</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lblInspMul">
+       <property name="text">
+        <string>inspimul</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lblSleepMul">
+       <property name="text">
+        <string>sleepmul</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="lblStatus">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>751</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Status</string>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="grpTime">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>30</y>
+     <width>441</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Time</string>
+   </property>
+   <widget class="QLabel" name="lblSpeed">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>20</y>
+      <width>131</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblDays">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Day 1</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblTime">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>20</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Her er tiden</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_5">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>533</width>
+      <height>103</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="ClickLabel" name="clk_lb_pause">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="toolTip">
+        <string>Pause game</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="../resource.qrc">:/icons/images/icons/pause.png</pixmap>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="ClickLabel" name="clk_lb_play">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="toolTip">
+        <string>Normal speed</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="../resource.qrc">:/icons/images/icons/play.png</pixmap>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="ClickLabel" name="clk_lb_faster">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="toolTip">
+        <string>Faster speed</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="../resource.qrc">:/icons/images/icons/fast.png</pixmap>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="ClickLabel" name="clk_lb_fastest">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="toolTip">
+        <string>Fastest speed</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="../resource.qrc">:/icons/images/icons/fastest.png</pixmap>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="lblPages">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>49</y>
+      <width>60</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblBookQuality">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>49</y>
+      <width>69</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblMoney">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>18</y>
+      <width>69</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Money</string>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="prgrBook">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>411</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>38</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Pages:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>37</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Quality (1-10)</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="lblBookPrgrg">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>107</y>
+     <width>111</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Book progress</string>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ClickLabel</class>
+   <extends>QLabel</extends>
+   <header>view/clicklabel.hpp</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>
